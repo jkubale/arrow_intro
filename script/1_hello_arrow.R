@@ -53,3 +53,6 @@ nyc_taxi%>%
   summarise(max_distance = max(trip_distance, na.rm=T))%>%
   arrange(month)%>%
   collect()
+
+
+
