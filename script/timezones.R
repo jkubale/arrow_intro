@@ -46,15 +46,15 @@ names(files2019) <- NULL
 files2019v2 <- unlist(files2019[1])
 
 translate <- schema(
-  STORE_ID = 
+  STORE_ID = float64()
 )
-
+# , partitioning = schema(STORE_ID = float64())
 advan2019 <- open_dataset(files2019v2, format="csv",  read_options = list(block_size = 2048576L))
-
+advan2019$STORE_ID
 chk <- read.csv("data/advan_mp_Monthly_Patterns_Foot_Traffic-0-DATE_RANGE_START-2019-01-01.csv")
 # chk2 <- chk[12,]
 subsetAdvan <- advan2019 |> 
-  select(-c(OPENED_ON, CLOSED_ON, STORE_ID, PHONE_NUMBER))|>
+  select(-c(OPENED_ON, CLOSED_ON, PHONE_NUMBER))|>
   filter(REGION == "WI")
 
 tic()
